@@ -81,6 +81,7 @@ let colors: Color[] = [
           return false;
         }
         colors.push(newColor);
+        console.log("colors = ", colors);
 
         pubsub.publish("COLOR_MUTATED", {
           colorMutated: {

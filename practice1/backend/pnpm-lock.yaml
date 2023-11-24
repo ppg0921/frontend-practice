@@ -14,6 +14,9 @@ dependencies:
   '@supercharge/promise-pool':
     specifier: ^2.4.0
     version: 2.4.0
+  all:
+    specifier: ^0.0.0
+    version: 0.0.0
   apollo-server-core:
     specifier: ^3.13.0
     version: 3.13.0(graphql@15.8.0)
@@ -1243,6 +1246,10 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
+
+  /all@0.0.0:
+    resolution: {integrity: sha512-0oKlfNVv2d+d7c1gwjGspzgbwot47PGQ4b3v1ccx4mR8l9P/Y6E6Dr/yE8lNT63EcAKEbHo6UG3odDpC/NQcKw==}
+    dev: false
 
   /ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
