@@ -8,10 +8,16 @@ function App() {
   const [color, setColor] = React.useState<Color | null>(null);
   const [inputColor, setInputColor] = useState("");
   const [inputColorCode, setInputColorCode] = useState([0, 0, 0]);
+  const [allColors, setAllColors] = React.useState<Color[] | null>(null);
 
   const fetchColor = () => {
     client.query<Color[]>({ query: COLOR_QUERY }).then((result) => {
       console.log(result.data);
+      const FormattedResult = result.data.map((color) => ({
+        color: color.color,
+        colorCode: color.colorCode
+      }));
+      setAllColors(FormattedResult);
     })
   }
 
@@ -43,6 +49,7 @@ function App() {
     }).then((result) => {
       console.log(result);
     });
+    fetchColor();
   }
 
   const ChangeColorCode = (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,6 +71,7 @@ function App() {
     }).then((result) => {
       console.log(result);
     });
+    fetchColor();
   }
 
   const DeleteColor = (e: React.FormEvent<HTMLFormElement>) => {
@@ -72,18 +80,19 @@ function App() {
     // setInputs(e);
     const target = e.target as typeof e.target & {
       color: { value: string };
-      
+
     };
     const color = target.color.value;
-    
+
     console.log("in delete color code");
 
     client.mutate<boolean, DeleteColorVariables>({
       mutation: DELETE_COLOR_MUTATION,
-      variables: { input: { color: color} },
+      variables: { input: { color: color } },
     }).then((result) => {
       console.log(result);
     });
+    fetchColor();
   }
 
   return (
@@ -113,6 +122,14 @@ function App() {
           <button type='submit'>Submit</button>
         </form>
       </header>
+      <div>
+        {allColors && allColors.map((color)=>(
+          <div>
+            <div>color = {color.color}</div>
+            <div>colorCode = {color.colorCode} </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
