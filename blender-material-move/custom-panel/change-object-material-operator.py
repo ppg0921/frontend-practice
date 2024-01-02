@@ -64,7 +64,7 @@ class ChangeMaterialColor(bpy.types.Operator):
     def execute(self, context):
 #        self.partially_clean()
         # read name from placeholder
-        name = bpy.context.scene.placeholder.dropdown_box
+        name = bpy.context.scene.placeholder.color_name
         material = bpy.data.materials[name]
         bpy.context.object.material_slots[0].material = material
 #        print(material)

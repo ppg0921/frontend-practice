@@ -20,6 +20,7 @@ class ChangeMaterialColor(bpy.types.Operator):
 
         # enable creating a material via nodes
         material.use_nodes = True
+        
 
         # get a reference to the Principled BSDF shader node
         principled_bsdf_node = material.node_tree.nodes["Principled BSDF"]
@@ -58,7 +59,7 @@ class ChangeMaterialColor(bpy.types.Operator):
     def execute(self, context):
 #        self.partially_clean()
         # read name from placeholder
-        name = bpy.context.scene.placeholder.dropdown_box
+        name = bpy.context.scene.placeholder.color_name
         material = self.create_material(name)
         
 #        mesh_obj = self.add_mesh() 
